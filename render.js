@@ -45,20 +45,6 @@ game.style.imageRendering =  "pixelated";
 document.body.style.margin = "unset"
 const ctx = game.getContext("2d");
 
-function Backdrop() {
-	const imgData = ctx.createImageData(40*8, 20*8);
-	for (let i = 0; i < imgData.data.length; i += 4) {
-		imgData.data[i + 0] = 0x33;
-		imgData.data[i + 1] = 0x33;
-		imgData.data[i + 2] = 0x33;
-		imgData.data[i + 3] = 0xFF;
-	}
-	return imgData;
-
-}
-const backdrop = Backdrop()
-ctx.putImageData(backdrop, 0,0)
-
 function Block(r, g, b, a) {
 	const imgData = ctx.createImageData(8, 8);
 	for (let i = 0; i < imgData.data.length; i += 4) {
@@ -102,6 +88,29 @@ function paint_dungeon() {
         }
     }
 }
+
+
+/**
+ * 
+ * Above is not used right now
+ * 
+ */
+
+
+function Backdrop() {
+	const imgData = ctx.createImageData(40*8, 20*8);
+	for (let i = 0; i < imgData.data.length; i += 4) {
+		imgData.data[i + 0] = 0x33;
+		imgData.data[i + 1] = 0x33;
+		imgData.data[i + 2] = 0x33;
+		imgData.data[i + 3] = 0xFF;
+	}
+	return imgData;
+
+}
+const backdrop = Backdrop()
+ctx.putImageData(backdrop, 0,0)
+
 
 export const Renderer = {
     update(dt) {
