@@ -11,7 +11,7 @@ export const Input = {
             const input = entity.components.input;
             const velocity = entity.components.velocity;
 
-            const speed = 0.1;
+            const speed = 0.2;
             velocity.x = 0;
             velocity.y = 0;
 

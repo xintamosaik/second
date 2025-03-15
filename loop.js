@@ -1,8 +1,8 @@
 import { systems } from './ecs.js';
 
 export default function initLoop() {
-  const TICK_RATE = 60;
-  const MS_PER_TICK = 1000 / TICK_RATE;
+  
+  const MS_PER_TICK = 15;
   let lastTime = performance.now();
   let accumulator = 0;
 

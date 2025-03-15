@@ -41,7 +41,7 @@ const game = window.game
 game.width = TILE_WIDTH * WIDTH
 game.height = TILE_WIDTH * HEIGHT
 game.style.imageRendering =  "pixelated"; 
-// game.style.imageRendering =  "crisp-edges"; // Later we might use it to detect browsers that are not ok with "pixelated"
+
 document.body.style.margin = "unset"
 const ctx = game.getContext("2d");
 
@@ -121,7 +121,6 @@ export const Renderer = {
         
             const render = entity.components.render;
             const position = entity.components.position;
-       
             
             ctx.fillStyle = render.fill
             ctx.fillRect(position.x, position.y, render.width, render.height)
