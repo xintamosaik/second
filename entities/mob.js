@@ -12,7 +12,7 @@ export default function addMob(x, y) {
       position: createPositionComponent(x, y),
       velocity: createVelocityComponent(),
       ai: createAIComponent(),
-      render: createRenderComponent(),
+      render: createRenderComponent("red"),
       type: { name: 'mob' }
     }
   };
