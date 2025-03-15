@@ -50,10 +50,9 @@ document.body.style.margin = "unset"
 const ASPECT_RATIO = WIDTH / HEIGHT;
 
 const resizeObserver = new ResizeObserver(entries => {
-	console.log(entries[0]);
-	console.log(entries[0].contentRect);
 
-	const { width, height } = entries[0].contentRect;
+	const width = window.innerWidth;
+	const height = window.innerHeight;
 	// the aspect ratio has to be respected
 	if (width / height > ASPECT_RATIO) {
 		game.style.width = height * ASPECT_RATIO + "px";
@@ -63,6 +62,7 @@ const resizeObserver = new ResizeObserver(entries => {
 		game.style.width = width + "px";
 		game.style.height = width / ASPECT_RATIO + "px";
 	}
+
 });
 
 resizeObserver.observe(document.body);
