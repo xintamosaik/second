@@ -43,6 +43,24 @@ game.height = TILE_WIDTH * HEIGHT
 game.style.imageRendering =  "pixelated"; 
 
 document.body.style.margin = "unset"
+const ASPECT_RATIO = WIDTH / HEIGHT;
+const resizeObserver = new ResizeObserver(entries => {
+	console.log(entries[0]);
+	console.log(entries[0].contentRect);
+
+	const { width, height } = entries[0].contentRect;
+    // the aspect ratio has to be respected
+	if (width / height > ASPECT_RATIO) {
+		game.style.width = height * ASPECT_RATIO + "px";
+		game.style.height = height + "px";
+	}
+	else {
+		game.style.width = width + "px";
+		game.style.height = width / ASPECT_RATIO + "px";
+	}
+}
+);
+resizeObserver.observe(document.body);
 const ctx = game.getContext("2d");
 
 function Block(r, g, b, a) {
