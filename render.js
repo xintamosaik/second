@@ -45,6 +45,20 @@ game.style.imageRendering =  "pixelated";
 document.body.style.margin = "unset"
 const ctx = game.getContext("2d");
 
+function Backdrop() {
+	const imgData = ctx.createImageData(40*8, 20*8);
+	for (let i = 0; i < imgData.data.length; i += 4) {
+		imgData.data[i + 0] = 0x33;
+		imgData.data[i + 1] = 0x33;
+		imgData.data[i + 2] = 0x33;
+		imgData.data[i + 3] = 0xFF;
+	}
+	return imgData;
+
+}
+const backdrop = Backdrop()
+ctx.putImageData(backdrop, 0,0)
+
 function Block(r, g, b, a) {
 	const imgData = ctx.createImageData(8, 8);
 	for (let i = 0; i < imgData.data.length; i += 4) {
@@ -72,29 +86,33 @@ const char2Block = {
 }
 
 const dungeon_height = dungeon.length;
-for (let i = 0; i < dungeon_height; i++) {
-	const row = dungeon[i]
-	const row_length = row.length
-	for (let j = 0; j < row_length; j++) {
-		const current_char = row.charAt(j)
-		if (char2Block.hasOwnProperty(current_char)) {
-			ctx.putImageData(char2Block[current_char], j * 8, i * 8)
-		} else {
-			ctx.putImageData(block_light, j * 8, i * 8)
-		}
 
-	}
+function paint_dungeon() {
+    for (let i = 0; i < dungeon_height; i++) {
+        const row = dungeon[i]
+        const row_length = row.length
+        for (let j = 0; j < row_length; j++) {
+            const current_char = row.charAt(j)
+            if (char2Block.hasOwnProperty(current_char)) {
+                ctx.putImageData(char2Block[current_char], j * 8, i * 8)
+            } else {
+                ctx.putImageData(block_light, j * 8, i * 8)
+            }
+    
+        }
+    }
 }
+
 export const Renderer = {
     update(dt) {
    
         const entities = getEntitiesWith( 'render');
-    
+        ctx.putImageData(backdrop, 0,0)
         entities.forEach(entity => {
         
             const render = entity.components.render;
             const position = entity.components.position;
-            console.log(render, position)
+       
             
             ctx.fillStyle = render.fill
             ctx.fillRect(position.x, position.y, render.width, render.height)
