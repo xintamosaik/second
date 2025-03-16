@@ -3,6 +3,7 @@ import { Input } from "./input.js";
 import { Ai } from "./ai.js";
 import { Movement } from "./movement.js";
 import { Renderer } from "./render.js";
+import { Collision } from "./collision.js";
 import addPlayer from "./entities/player.js";
 import addMob from "./entities/mob.js";
 import initLoop from "./loop.js";
@@ -52,6 +53,7 @@ function init() {
   register(Ai);
   register(Movement);
   register(Renderer);
+  register(Collision);
 
   // Create initial entities
   addPlayer(100, 100);

@@ -3,6 +3,7 @@ import { createPositionComponent } from '../position.js';
 import { createVelocityComponent } from '../velocity.js';
 import { createInputComponent } from '../input.js';
 import { createRenderComponent } from '../render.js'
+import { createCollisionComponent } from '../collision.js';
 
 export default function addPlayer(x, y) {
   const id = entities.length;
@@ -13,6 +14,7 @@ export default function addPlayer(x, y) {
       velocity: createVelocityComponent(),
       input: createInputComponent(),
       render: createRenderComponent(),
+      collision: createCollisionComponent(8, 8),
       type: { name: 'player' }
     }
   };
